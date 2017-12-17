@@ -45,10 +45,10 @@ class FtpExport
      *
      * @throws Exception
      */
-    public function sendToFtp($remoteFileName, $file)
+    public function sendToFtp($remoteFileName, $file, $stream = null, $user = null, $password = null)
     {
 
-        $connec = $this->connecToFtp();
+        $connec = $this->connecToFtp($stream, $user, $password);
 
         ftp_pasv ( $connec , true );
 
@@ -69,7 +69,7 @@ class FtpExport
      * @param null|string $password
      *
      */
-    public function connecToFtp($stream = null, $user = null, $password =  null)
+    public function connecToFtp($stream = null, $user = null, $password = null)
     {
         $stream = isset($stream) ? $stream : $this->stream;
         $user  = isset($user) ? $user : $this->user;
